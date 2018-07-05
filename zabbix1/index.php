@@ -24,9 +24,7 @@ require_once dirname(__FILE__).'/include/forms.inc.php';
 
 $page['title'] = _('ZABBIX');
 $page['file'] = 'index.php';
-$value = "DefenseSCRF";
-setcookie("cookie", $value, time()+3600);
-$hash = md5($_COOKIE["cookie"]);
+
 // VAR	TYPE	OPTIONAL	FLAGS	VALIDATION	EXCEPTION
 $fields = [
 	'name' =>		[T_ZBX_STR, O_NO,	null,	null,		'isset({enter})', _('Username')],
@@ -38,11 +36,6 @@ $fields = [
 	'request' =>	[T_ZBX_STR, O_OPT, null,	null,			null]
 ];
 check_fields($fields);
-//test
-
-if (isset($_POST['hash']) && $_POST['hash'] == $hash){
-    header("Location: test2.php");
-} 
 
 // logout
 if (isset($_REQUEST['reconnect'])) {
@@ -68,7 +61,7 @@ if ($config['authentication_type'] == ZBX_AUTH_HTTP) {
 }
 
 // login via form
-if (isset($_REQUEST['enter']) && $_REQUEST['enter'] == _('Sign in') ) {
+if (isset($_REQUEST['enter']) && $_REQUEST['enter'] == _('Sign in')) {
 	// try to login
 	$autoLogin = getRequest('autologin', 0);
 
@@ -123,7 +116,6 @@ if (!CWebUser::$data['alias'] || CWebUser::$data['alias'] == ZBX_GUEST_USER) {
 				$messages = array_pop($messages);
 				$_REQUEST['message'] = $messages['message'];
 			}
-                        
 			$loginForm = new CView('general.login');
 			$loginForm->render();
 	}

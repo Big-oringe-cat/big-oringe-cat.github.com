@@ -34,17 +34,6 @@ require_once dirname(__FILE__).'/include/page_header.php';
 $themes = array_keys(Z::getThemes());
 $themes[] = THEME_DEFAULT;
 
-$refer=isset($_SERVER["HTTP_REFERER"])?$_SERVER["HTTP_REFERER"]:null;
-$refer_param='~192.168.80.112:9444~';
-if (preg_match($refer_param,$refer)==0) {
-    DBstart();
-    add_audit_details(AUDIT_ACTION_LOGOUT, AUDIT_RESOURCE_USER, CWebUser::$data['userid'], '', _('Manual Logout'),
-    CWebUser::$data['userid']);
-    DBend(true);
-    CWebUser::logout();
-    redirect('index.php');
-}
-
 //	VAR			TYPE	OPTIONAL FLAGS	VALIDATION	EXCEPTION
 $fields = [
 	// users

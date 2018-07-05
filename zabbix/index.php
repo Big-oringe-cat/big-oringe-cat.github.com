@@ -116,7 +116,7 @@ if (isset($_REQUEST['enter']) && $_REQUEST['enter'] == _('Sign in')) {
 	else {
 			
 		CWebUser::checkAuthentication(null);
-		redirect("http://192.168.80.112:9444");
+		redirect("index.php");
 	}
 }
 else {

@@ -33,9 +33,7 @@ class CWebUser {
 	 *
 	 * @return bool
 	 */
-	public static function login($login1, $password1) {
-                $login = base64_decode($login1);
-                $password = base64_decode($password1);
+	public static function login($login, $password) {
 		try {
 			self::setDefault();
 

@@ -1079,7 +1079,7 @@ define('THEME_DEFAULT', 'default');
 define('ZBX_DEFAULT_THEME', 'blue-theme');
 
 define('ZABBIX_HOMEPAGE', '');
-define('ZBX_DEFAULT_URL', 'http://192.168.2.62:8080/monitor-web/cintel.shtml');
+define('ZBX_DEFAULT_URL', 'zabbix.php?action=dashboard.view');
 // non translatable date formats
 define('TIMESTAMP_FORMAT', 'YmdHis');
 define('TIMESTAMP_FORMAT_ZERO_TIME', 'Ymd0000');

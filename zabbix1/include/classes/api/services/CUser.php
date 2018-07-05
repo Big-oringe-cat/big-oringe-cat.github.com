@@ -1066,8 +1066,7 @@ class CUser extends CApiService {
 		// check if user is blocked
 		if ($userInfo['attempt_failed'] >= ZBX_LOGIN_ATTEMPTS) {
 			if ((time() - $userInfo['attempt_clock']) < ZBX_LOGIN_BLOCK) {
-				self::exception(ZBX_API_ERROR_PARAMETERS, _s('Login name or password is incorrect.', (ZBX_LOGIN_BLOCK - (time() - $userInfo['attempt_clock']))));
-				//self::exception(ZBX_API_ERROR_PARAMETERS, _s('Account is blocked for %s seconds', (ZBX_LOGIN_BLOCK - (time() - $userInfo['attempt_clock']))));
+				self::exception(ZBX_API_ERROR_PARAMETERS, _s('Account is blocked for %s seconds', (ZBX_LOGIN_BLOCK - (time() - $userInfo['attempt_clock']))));
 			}
 
 			DBexecute('UPDATE users SET attempt_clock='.time().' WHERE alias='.zbx_dbstr($name));
