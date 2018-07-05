@@ -1,5 +1,4 @@
 <?php
-session_start();
 $captcha = isset($_POST["captcha"])?$_POST["captcha"]:null;
 class Jm {
 public static function login($login1, $password1){
@@ -28,12 +27,13 @@ openssl_private_decrypt($encrypt_pass, $password, $private_key); //解密数据
 echo "name:",$login;
 echo "</br>";
 echo "pass:",$password;
-echo "";
+echo "</br>";
 }
 }
 $a = new Jm();
-$a->login($_POST['username'],$_POST['password']);
-echo $_SESSION["captcha"];
+$a->login($_POST['name'],$_POST['password']);
+echo "</br>";
+echo $_COOKIE["captcha"];
 echo "</br>";
 echo $captcha;
 ?>

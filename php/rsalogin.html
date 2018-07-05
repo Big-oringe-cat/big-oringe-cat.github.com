@@ -2,16 +2,14 @@
 <head>
     <title>RSA Login Test</title>
     <meta charset="utf-8">
-    <script type="text/javascript" src="js/jsbn.js"></script>
-    <script type="text/javascript" src="js/prng4.js"></script>
-    <script type="text/javascript" src="js/rng.js"></script>
-    <script type="text/javascript" src="js/rsa.js"></script>
-    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jsbn.js"></script>
+    <script type="text/javascript" src="/js/prng4.js"></script>
+    <script type="text/javascript" src="/js/rng.js"></script>
+    <script type="text/javascript" src="/js/rsa.js"></script>
+    <script src="/js/jquery.min.js"></script>
 
     <script type="text/javascript">
         function cmdEncrypt() {
-            var passwd = $('#passwd').val();
-            var name = $('#username').val();
             var rsa = new RSAKey();
 
 　　　　　　　//openssl生成的modulus,十六进制数据
@@ -20,11 +18,9 @@
             //openssl生成秘钥时的e的值(0x10001)
 　　　　　　　var exponent = "10001";
             rsa.setPublic(modulus, exponent);
-
-            var rsa_name = rsa.encrypt(name);
-            var rsa_pass = rsa.encrypt(passwd);
-            $('#username').val(rsa_name);
-            $('#passwd').val(rsa_pass);
+            document.getElementById("name").value = rsa.encrypt(document.getElementById("name").value);
+            document.getElementById("name").type="password";
+            document.getElementById("password").value = rsa.encrypt(document.getElementById("password").value);
         }
     </script>
 
@@ -32,10 +28,10 @@
 <body>
 <form action="rsabak.php" method="post" >
     <li><label for="username">用户名：</label>
-    <input type="text" name="username" id="username"></li>
+    <input type="text" name="name" id="name"></li>
     <li><label for="passwd">密  码：</label>
-    <input type="password" name="password" id="passwd"></li>
-    <li><img  name="Img" alt="Img" src="image_captcha.php" onclick="this.src='image_captcha.php?'+new Date().getTime();" width="250" height="60"></li>
+    <input type="password" name="password" id="password"></li>
+    <li><img  name="Img" alt="Img" src="include/image_captcha.php" onclick="this.src='include/image_captcha.php?'+new Date().getTime();" width="250" height="60"></li>
     <li><input type="text" id="captcha" name="captcha" value="" maxlength="255" placeholder="请输入图片中的验证码"></li><li><label for="autologin"></li>
     <input type="submit" value="登录" onclick="cmdEncrypt();">
 </form>
