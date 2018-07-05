@@ -2,8 +2,6 @@
 /**
  * 字母+数字的验证码生成
  */
-// 开启session
-session_start();
 //1.创建黑色画布
 $image = imagecreatetruecolor(100, 30);
  
@@ -34,11 +32,11 @@ for ($i = 0; $i < 4; $i++) {
     // 填充内容到画布中
     imagestring($image, $fontsize, $x, $y, $fontcontent, $fontcolor);
 }
-$_SESSION["captcha"] = $captcha;
+setcookie("captcha",$captcha,time()+1200,"/");
  
 //4.3 设置背景干扰元素
 for ($$i = 0; $i < 200; $i++) {
-    $pointcolor = imagecolorallocate($image, mt_rand(50, 200), mt_rand(50, 200), mt_rand(50, 200));
+    $pointcolor = imagecolorallocate($image, mt_rand(0, 200), mt_rand(50, 200), mt_rand(50, 200));
     imagesetpixel($image, mt_rand(1, 99), mt_rand(1, 29), $pointcolor);
 }
  

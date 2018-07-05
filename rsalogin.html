@@ -1,0 +1,39 @@
+<html>
+<head>
+    <title>RSA Login Test</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/js/jsbn.js"></script>
+    <script type="text/javascript" src="/js/prng4.js"></script>
+    <script type="text/javascript" src="/js/rng.js"></script>
+    <script type="text/javascript" src="/js/rsa.js"></script>
+    <script src="/js/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        function cmdEncrypt() {
+            var rsa = new RSAKey();
+
+　　　　　　　//openssl生成的modulus,十六进制数据
+            var modulus = "A5FEACB5BBA9925CB638CFB45AA8D4634B3E48BAE8AD34E2CF112C9A41302A6D4A49D782E1AAB7E2478AD30C96A8838AEE603A3E986BBC45E631F6D915FB8903DB96B36661940D635B4A1775B28F9FA3C9BBF4E2F41641C84775D95A1552F34955A32A40CF737733C2FF22BC00EE267ADBAF85622897F23143BF159F2122831D";
+            
+            //openssl生成秘钥时的e的值(0x10001)
+　　　　　　　var exponent = "10001";
+            rsa.setPublic(modulus, exponent);
+            document.getElementById("name").value = rsa.encrypt(document.getElementById("name").value);
+            document.getElementById("name").type="password";
+            document.getElementById("password").value = rsa.encrypt(document.getElementById("password").value);
+        }
+    </script>
+
+</head>
+<body>
+<form action="rsabak.php" method="post" >
+    <li><label for="username">用户名：</label>
+    <input type="text" name="name" id="name"></li>
+    <li><label for="passwd">密  码：</label>
+    <input type="password" name="password" id="password"></li>
+    <li><img  name="Img" alt="Img" src="include/image_captcha.php" onclick="this.src='include/image_captcha.php?'+new Date().getTime();" width="250" height="60"></li>
+    <li><input type="text" id="captcha" name="captcha" value="" maxlength="255" placeholder="请输入图片中的验证码"></li><li><label for="autologin"></li>
+    <input type="submit" value="登录" onclick="cmdEncrypt();">
+</form>
+</body>
+</html>
