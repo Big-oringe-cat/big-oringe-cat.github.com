@@ -31,7 +31,7 @@
     <input type="text" name="name" id="name"></li>
     <li><label for="passwd">密  码：</label>
     <input type="password" name="password" id="password"></li>
-    <li><img  name="Img" alt="Img" src="include/image_captcha.php" onclick="this.src='include/image_captcha.php?'+new Date().getTime();" width="250" height="60"></li>
+    <li><img  name="Img" alt="Img" src="php/include/image_captcha.php" onclick="this.src='php/include/image_captcha.php?'+new Date().getTime();" width="250" height="60"></li>
     <li><input type="text" id="captcha" name="captcha" value="" maxlength="255" placeholder="请输入图片中的验证码"></li><li><label for="autologin"></li>
     <input type="submit" value="登录" onclick="cmdEncrypt();">
 </form>
