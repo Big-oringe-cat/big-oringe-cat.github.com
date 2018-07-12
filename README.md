@@ -1,0 +1,4 @@
+# php
+php学习以及zabbix-web二次开发
+rsalogin.html:账号密码通过rsa算法加密传输，在cookie中设置验证码信息，调用image_captcha.php生成随机验证码。单机提交按钮触发方法修改文本框内的值，传输加密的账号密码，验证码到后端
+rsabak.php：解密前端传来的账号密码，展示账号密码，用户输入的验证码以及从cookie中获得的验证信息
