@@ -107,7 +107,8 @@ if (isset($_REQUEST['enter']) && $_REQUEST['enter'] == _('Sign in')) {
 			}else{
 				$url = ZBX_DEFAULT_URL2;
 				sprintf(_("3333"));
-			}**/
+			}
+			**/
 		}
 		redirect($url);
 		exit;
